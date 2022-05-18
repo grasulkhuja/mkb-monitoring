@@ -1,0 +1,308 @@
+{
+  "basics": {
+    "book": "Книга",
+    "search": "Поиск",
+    "create": "Добавить",
+    "rows-per-page": "Лимит",
+    "id": "ID",
+    "title": "Название",
+    "authors": "Авторы",
+    "udc": "УДК",
+    "grnti": "ГРНТИ",
+    "language": "Язык",
+    "publication-date": "Год издания",
+    "special-book": "Редкая книга",
+    "pages": "Страницы",
+    "statistics": "Статистика",
+    "total": "В сумме",
+    "growth": "прирост",
+    "users": "Пользователи",
+    "create-user": "Добавить пользовател",
+    "books": "Книги",
+    "orders": "Заказы",
+    "new-books": "Новых книг",
+    "k": "K",
+    "loading-text": "Данные загружаются",
+    "documentType": "Характер документа",
+    "discipline": "Предмет",
+    "attendance": "Посещаемость",
+    "add": "Добавить",
+    "inventory": "Инвентарь",
+    "name": "Название",
+    "abbreviation": "Аббревиатура",
+    "book-count": "Количество книг",
+    "initial-name": "Инициал",
+    "user-full-name": "Ф. И. О",
+    "middle-name": "Отчество",
+    "phone": "Мобильный номер",
+    "close": "Закрыть",
+    "first-name": "Имя",
+    "last-name": "Фамилия",
+    "first-initial": "Инициал",
+    "previous": "Предыдущий",
+    "next": "Следующий",
+    "book-catalog-card": "Карточка книги",
+    "download": "Скачать",
+    "update": "Обновить",
+    "currency": "Валюта"
+  },
+  "sentences": {
+    "parent-udc": "Родительский УДК",
+    "parent-grnti": "Родительский ГРНТИ",
+    "statistics-card": "",
+    "full-name": "Ф. И. О",
+    "first-name": "Имя",
+    "last-name": "Фамилия",
+    "middle-name": "Отчество",
+    "avatar": "Аватар",
+    "university-name": "Университет",
+    "faculty-name": "Факультет",
+    "group-name": "Группа",
+    "enter-search-term": "Введите поисковый запрос",
+    "user-interface": "Пользовательский интерфейс",
+    "document-parts": "Составляющие документа",
+    "created-at": "Дата входа",
+    "successfully-added": "Добавление прошло успешно",
+    "error-adding": "Ошибка при добавлении",
+    "add-document-type": "Добавить тип документа",
+    "add-document-view": "Добавить вид документа",
+    "add-document-nature": "Добавить характер документа",
+    "add-journal": "Добавить журнал",
+    "add-language": "Добавить язык",
+    "add-udc": "Добавить УДК",
+    "add-grnti": "Добавить ГРНТИ",
+    "add-copyright-mark": "Добавить авторского знака",
+    "add-editor": "Добавить редактора",
+    "add-publisher": "Добавить издателя",
+    "add-faculty": "Добавить факультета",
+    "add-department": "Добавить кафедру",
+    "add-discipline": "Добавить предмет",
+    "add-author-rating": "Добавить авторский рейтинг",
+    "add-storage": "Добавить место хранения",
+    "add-country": "Добавить страну",
+    "add-author": "Добавить автора",
+    "add-participant": "Добавить участника",
+    "name": "Наименование",
+    "abbreviation": "Аббревиатура",
+    "user-registered": "Пользователь зарегистрирован",
+    "rus-mark-code": "Код rusmarc",
+    "mark-21-code": "Код marc-21",
+    "us-mark-code": "Код usmarc"
+  },
+  "navigation": {
+    "dashboard": "Дашборд",
+    "statistics": "Статистика",
+    "analytics": "Аналитика",
+    "book-create": "Добавление книги",
+    "chat": "Чат",
+    "orders": "Заказы",
+    "universities": "Университеты",
+    "authors-rating": "Авторский рейтинг",
+    "copyright-mark": "Авторский знак",
+    "authors": "Авторы",
+    "discipline": "Дисциплины",
+    "journal": "Журналы",
+    "publishers": "Издатели",
+    "categories": "Категории",
+    "departments": "Кафедры",
+    "books": "Книги",
+    "collections": "Коллекции",
+    "storages": "Места хранения документов",
+    "editors": "Редакторы",
+    "document-type": "Характер документа",
+    "languages": "Языки"
+  },
+  "book-create": {
+    "tabs": {
+      "tab-titles": {
+        "publication-main-parts": "Основные поля",
+        "book-fields": "Книжные поля",
+        "phd-thesis": "Докторская диссертация",
+        "labors": "Труды",
+        "miscellaneous": "Разное",
+        "cross-references": "Связанные ссылки",
+        "additional-information": "Дополнительная информация",
+        "author-rating": "Рейтинг автора ",
+        "storage": "Места хранения",
+        "add-personalities-and-roles": "Добавление личностей и ролей",
+        "book-title": "Название книги",
+        "publishing-information": "Издательские информации",
+        "identifiers": "Идентификаторы",
+        "book-volume": "Объем книги",
+        "codes": "Коды",
+        "regional-information": "Региональные информации",
+        "copies": "Экземпляры",
+        "technology": "Технология",
+        "e-part": "Электронная часть",
+        "univer-info": "Информация об университете"
+      },
+      "tab-content": {
+        "add-personalities": {
+          "author": "Автор",
+          "participant": "Участник",
+          "role": "Роль"
+        },
+        "book-title": {
+          "title": "Заглавие",
+          "chapter-title": "Название тома",
+          "volume": "Том",
+          "edition-info": "Сведение об издании"
+        },
+        "publishing-info": {
+          "publication-year": "Год издания",
+          "publisher": "Издательство",
+          "city": "Город"
+        },
+        "publication-main-parts": {
+          "document-type": "Характер документа",
+          "title": "Название",
+          "journal": "Журнал",
+          "volume": "Том",
+          "pages": "Страницы",
+          "language": "Язык",
+          "created-date": "Дата публикации",
+          "partial-publication-date": "Дата частичной публикации"
+        },
+        "identifiers": {
+          "price": "Цена",
+          "invoice-number": "Номер счёт фактуры",
+          "inventory-number": "Инвентарный номер",
+          "supplier": "Поставщик",
+          "act-file": "Акт"
+        },
+        "book-volume": {
+          "pages": "Страницы",
+          "printing-plate": "Условная печатная форма",
+          "edition-info": "Тираж"
+        },
+        "codes": {
+          "document-nature": "Характер документа",
+          "document-view": "Вид документа",
+          "document-type": "Тип документа",
+          "illustration": "Иллюстрация",
+          "table": "Таблица",
+          "application": "Приложение",
+          "colored-illustration": "Цветная иллюстрация",
+          "special-book": "Редкая книга"
+        },
+        "regional-info": {
+          "country": "Страна",
+          "language": "Язык"
+        },
+        "copies": {
+          "inventory-number": "Инвентарный номер",
+          "quantity": "Общее количество книг",
+          "storage": "Хранилище"
+        },
+        "technology": {
+          "copyright-mark": "Авторский знак",
+          "udc": "УДК",
+          "grnti": "ГРНТИ",
+          "key-words": "Ключевые слова",
+          "annote": "Аннотация",
+          "note": "Заметка"
+        },
+        "e-part": {
+          "file": "Файл",
+          "thumbnail": "Обложка",
+          "audio-file": "Аудио файл",
+          "thumbnail-preview": "Предварительный просмотр обложки"
+        },
+        "univer-info": {
+          "university": "Университет",
+          "faculty": "Факультет",
+          "department": "Кафедра",
+          "discipline": "Предмет"
+        },
+        "book-fields": {
+          "book-title": "Название книги",
+          "edition": "Издание",
+          "chapter": "Глава",
+          "udc": "Удк",
+          "copyright-mark": "Авторский знак"
+        },
+        "phd-thesis": {
+          "school": "Школа"
+        },
+        "labors": {
+          "organization": "Организация"
+        },
+        "miscellaneous": {
+          "editors": "Редакторы",
+          "publisher": "Издатель",
+          "address": "Адрес",
+          "annotation": "Аннотация",
+          "note": "Заметка"
+        },
+        "cross-references": {
+          "cross-references": "Связанные ссылки"
+        },
+        "additional-information": {
+          "printed-book": "Печатная версия",
+          "e-book": "Электронная версия",
+          "special-book": "Редкая книга",
+          "faculty": "Факультет",
+          "department": "Кафедра",
+          "discipline": "Предмет",
+          "thumbnail": "Обложка",
+          "file": "Файл",
+          "key-words": "Ключевые слова",
+          "quantity": "Количество",
+          "real-time-count": "Оставшейся",
+          "price": "Цена",
+          "used": "Используется",
+          "rating": "Рейтинг",
+          "date-get": "Дата получения"
+        },
+        "authors-rating": {
+          "author": "Автор",
+          "rating": "Рейтинг"
+        },
+        "storage": {
+          "storage": "Место хранение",
+          "quantity": "Количество",
+          "add": "Добавить"
+        }
+      }
+    }
+  },
+  "filters": {
+    "udc": "Удк",
+    "type": "Тип",
+    "authors": "Автор",
+    "department": "Кафедра",
+    "date-get": "Дата получения",
+    "publication-year": "Дата издания",
+    "copyright-mark": "Авторский знак",
+    "journal": "Журнал",
+    "discipline": "Предмет",
+    "publisher": "Издатель",
+    "faculty": "Факультет",
+    "editor": "Редакторы",
+    "language": "Язык",
+    "e-book": "Электронная версия",
+    "special-book": "Редкая книга"
+  },
+  "book-list-table": {
+    "loading-text": "Данные загружаются",
+    "no-data-text": "Данных нет",
+    "no-results-text": "Ничего не найдено"
+  },
+  "orders-list-table": {
+    "id": "ID",
+    "customer": "Заказчик",
+    "faculty": "Факультет",
+    "group": "Группа",
+    "customer-avatar": "Аватар",
+    "book": "Название книги",
+    "book-thumbnail": "Обложка",
+    "order-time": "Дата заказа",
+    "time-of-get": "Дата получения",
+    "time-of-return": "Время возвращения",
+    "status": "Статус"
+  },
+  "chat": {
+    "send": "Отправить",
+    "input-place-holder": "Введите сюда ваше сообщение"
+  }
+}
