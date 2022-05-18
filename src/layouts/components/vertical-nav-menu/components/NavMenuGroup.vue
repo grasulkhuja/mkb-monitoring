@@ -1,5 +1,8 @@
 <template>
-  <v-list-group ref="refVListGroup" class="vertical-nav-menu-group text--primary">
+  <v-list-group
+    ref="refVListGroup"
+    class="vertical-nav-menu-group text--primary"
+  >
     <template #prependIcon>
       <v-icon :class="{ 'alternate-icon-small': !icon }">
         {{ icon }}
@@ -20,16 +23,16 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
+      required: true
     },
     icon: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
   setup() {
     return {}
-  },
+  }
 }
 </script>
 
@@ -64,7 +67,10 @@ export default {
       transform: rotate(-90deg);
     }
 
-    &.v-list-group--active > .v-list-group__header > .v-list-group__header__append-icon .v-icon {
+    &.v-list-group--active
+      > .v-list-group__header
+      > .v-list-group__header__append-icon
+      .v-icon {
       transform: none;
     }
   }

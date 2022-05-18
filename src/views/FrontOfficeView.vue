@@ -5,7 +5,9 @@
         <v-card flat color="grey lighten-4">
           <v-card-actions>
             <v-stepper v-model="step" vertical width="100%">
-              <v-stepper-step :complete="step > 1" step="1"> Departmentni tanlang </v-stepper-step>
+              <v-stepper-step :complete="step > 1" step="1">
+                Departmentni tanlang
+              </v-stepper-step>
 
               <v-stepper-content step="1">
                 <v-select
@@ -18,7 +20,9 @@
                 />
               </v-stepper-content>
 
-              <v-stepper-step :complete="step > 2" step="2"> Lavozimni tanlang </v-stepper-step>
+              <v-stepper-step :complete="step > 2" step="2">
+                Lavozimni tanlang
+              </v-stepper-step>
 
               <v-stepper-content step="2">
                 <v-select
@@ -36,7 +40,11 @@
               </v-stepper-step>
 
               <v-stepper-content step="3">
-                <v-form @submit.prevent="sendApplication" v-model="valid" ref="form">
+                <v-form
+                  @submit.prevent="sendApplication"
+                  v-model="valid"
+                  ref="form"
+                >
                   <v-card flat>
                     <v-card-text>
                       <v-row v-for="task in completedTasks" :key="task.id">
@@ -132,14 +140,14 @@ export default {
       completedTasks: [{ task_id: null, result: null, time: null }],
       requiredRules: [(v) => !!v || "To'ldirilishi kerak"],
       status: null,
-      message: null,
+      message: null
     }
   },
   watch: {
     department(departmentId) {
       this.$store
         .dispatch('office/fetchDepartmentPositions', {
-          departmentId,
+          departmentId
         })
         .then(() => {
           this.step = 2
@@ -148,15 +156,19 @@ export default {
     position(positionId) {
       this.$store
         .dispatch('office/fetchPositionTasks', {
-          positionId,
+          positionId
         })
         .then(() => {
           this.step = 3
         })
-    },
+    }
   },
   computed: {
-    ...mapGetters('office', ['departments', 'departmentPositions', 'positionTasks']),
+    ...mapGetters('office', [
+      'departments',
+      'departmentPositions',
+      'positionTasks'
+    ])
   },
   created() {
     this.$store.dispatch('office/fetchDepartments', { officeType: 'front' })
@@ -165,7 +177,7 @@ export default {
     sendApplication() {
       this.$store
         .dispatch('office/sendApplication', {
-          tasks: this.completedTasks,
+          tasks: this.completedTasks
         })
         .then((response) => {
           if (response.result === 'OK') {
@@ -180,7 +192,7 @@ export default {
     },
     resetTasks() {
       this.completedTasks = [{ task_id: null, result: null, time: null }]
-    },
-  },
+    }
+  }
 }
 </script>

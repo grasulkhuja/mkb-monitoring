@@ -16,7 +16,11 @@
 
         <!-- title -->
         <v-card-text>
-          <p class="text-2xl font-weight-semibold text--primary mb-2 text-center">Xush kelibsiz!</p>
+          <p
+            class="text-2xl font-weight-semibold text--primary mb-2 text-center"
+          >
+            Xush kelibsiz!
+          </p>
           <!--          <p class="mb-2">Please sign-in to your account and start the adventure</p>-->
         </v-card-text>
 
@@ -36,7 +40,9 @@
               outlined
               :type="isPasswordVisible ? 'text' : 'password'"
               placeholder="Parol"
-              :append-icon="isPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline"
+              :append-icon="
+                isPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline
+              "
               hide-details
               @click:append="isPasswordVisible = !isPasswordVisible"
             />
@@ -44,7 +50,9 @@
             <v-alert v-model="e" type="error" outlined class="my-4">
               {{ errorMessage }}
             </v-alert>
-            <v-btn block type="submit" color="primary" class="mt-6"> Kirish </v-btn>
+            <v-btn block type="submit" color="primary" class="mt-6">
+              Kirish
+            </v-btn>
           </v-form>
         </v-card-text>
       </v-card>
@@ -54,15 +62,29 @@
     <img
       class="auth-mask-bg"
       height="173"
-      :src="require(`@/assets/images/misc/mask-${$vuetify.theme.dark ? 'dark' : 'light'}.png`)"
+      :src="
+        require(`@/assets/images/misc/mask-${
+          $vuetify.theme.dark ? 'dark' : 'light'
+        }.png`)
+      "
       alt=""
     />
 
     <!-- tree -->
-    <v-img class="auth-tree" width="247" height="185" src="@/assets/images/misc/tree.png"></v-img>
+    <v-img
+      class="auth-tree"
+      width="247"
+      height="185"
+      src="@/assets/images/misc/tree.png"
+    ></v-img>
 
     <!-- tree  -->
-    <v-img class="auth-tree-3" width="377" height="289" src="@/assets/images/misc/tree-3.png" />
+    <v-img
+      class="auth-tree-3"
+      width="377"
+      height="289"
+      src="@/assets/images/misc/tree-3.png"
+    />
   </div>
 </template>
 
@@ -78,17 +100,18 @@ export default {
       useJwt
         .login({
           username: this.username,
-          password: this.password,
+          password: this.password
         })
         .catch((e) => {
           this.errorMessage = e.response.data.detail
         })
         .then((response) => {
           useJwt.setToken(response.data.token)
-          if (response.data.user_type === 1) this.$router.push({ name: 'reports-list' })
+          if (response.data.user_type === 1)
+            this.$router.push({ name: 'reports-list' })
           else this.$router.push({ name: 'reports-add' })
         })
-    },
+    }
   },
   setup() {
     const isPasswordVisible = ref(false)
@@ -105,10 +128,10 @@ export default {
 
       icons: {
         mdiEyeOutline,
-        mdiEyeOffOutline,
-      },
+        mdiEyeOffOutline
+      }
     }
-  },
+  }
 }
 </script>
 

@@ -4,7 +4,7 @@ export const namespaced = true
 
 export const state = {
   token: null,
-  user: null,
+  user: null
 }
 
 export const mutations = {
@@ -13,7 +13,7 @@ export const mutations = {
   },
   SET_USER(state, user) {
     state.user = user
-  },
+  }
 }
 
 export const actions = {
@@ -24,10 +24,10 @@ export const actions = {
   fetchUserData: async ({ commit }) => {
     const user = await AuthService.getUserData()
     commit('SET_USER', user)
-  },
+  }
 }
 
 export const getters = {
   token: (state) => state.token,
-  user: (state) => state.user,
+  user: (state) => state.user
 }

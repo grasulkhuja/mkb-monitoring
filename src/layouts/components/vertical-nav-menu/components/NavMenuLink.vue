@@ -23,18 +23,18 @@ export default {
   props: {
     title: {
       type: String,
-      required: true,
+      required: true
     },
     icon: {
       type: String,
-      default: undefined,
-    },
+      default: undefined
+    }
   },
   setup() {
     return {
-      alternateIcon: mdiCheckboxBlankCircleOutline,
+      alternateIcon: mdiCheckboxBlankCircleOutline
     }
-  },
+  }
 }
 </script>
 

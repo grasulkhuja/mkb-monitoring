@@ -13,7 +13,7 @@ import LayoutContent from '@/layouts/Content.vue'
 export default {
   components: {
     LayoutBlank,
-    LayoutContent,
+    LayoutContent
   },
   setup() {
     const { route } = useRouter()
@@ -26,8 +26,8 @@ export default {
     })
 
     return {
-      resolveLayout,
+      resolveLayout
     }
-  },
+  }
 }
 </script>

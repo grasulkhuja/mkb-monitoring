@@ -24,7 +24,7 @@ const OfficeService = {
   sendApplication: async (date, application) => {
     const { data } = await axios.post('/reports', {
       date,
-      application,
+      application
     })
     return data
   },
@@ -34,7 +34,7 @@ const OfficeService = {
   },
   downloadReport: async () => {
     const { data } = await axios.get('/getxlsx', {
-      responseType: 'blob',
+      responseType: 'blob'
     })
     const url = window.URL.createObjectURL(new Blob([data]))
     const linkElement = document.createElement('a')
@@ -43,7 +43,7 @@ const OfficeService = {
     document.body.appendChild(linkElement)
     linkElement.click()
     return new File([data], 'name')
-  },
+  }
 }
 
 export default OfficeService

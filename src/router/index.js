@@ -12,11 +12,11 @@ const routes = [
     meta: {
       title: 'Home',
       layout: 'content',
-      requiresAuth: true,
+      requiresAuth: true
     },
     redirect: {
-      name: 'reports-add',
-    },
+      name: 'reports-add'
+    }
   },
   {
     path: '/reports/add',
@@ -25,8 +25,8 @@ const routes = [
     meta: {
       title: 'Add Report',
       layout: 'content',
-      requiresAuth: true,
-    },
+      requiresAuth: true
+    }
   },
   {
     path: '/reports/list',
@@ -35,8 +35,8 @@ const routes = [
     meta: {
       title: 'ReportsListView',
       layout: 'content',
-      requiresAuth: true,
-    },
+      requiresAuth: true
+    }
   },
   // {
   //   path: '/office',
@@ -87,15 +87,15 @@ const routes = [
     meta: {
       title: 'Login',
       layout: 'blank',
-      requiresAuth: false,
-    },
-  },
+      requiresAuth: false
+    }
+  }
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes,
+  routes
 })
 
 router.beforeEach((to, from, next) => {

@@ -16,7 +16,11 @@
             />
           </v-card-title>
           <v-card-text>
-            <v-data-table :headers="reportsTableHeaders" :items="statistics" :search="search">
+            <v-data-table
+              :headers="reportsTableHeaders"
+              :items="statistics"
+              :search="search"
+            >
               <template v-slot:[`item.created_at`]="{ item }">
                 {{ new Date(item.created_at).toLocaleString() }}
               </template>
@@ -24,7 +28,9 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn @click.prevent="downloadReport" color="primary"> Yuklab olish </v-btn>
+            <v-btn @click.prevent="downloadReport" color="primary">
+              Yuklab olish
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -39,18 +45,18 @@ import locale from 'date-fns/locale/uz'
 export default {
   name: 'ReportsView',
   filters: {
-    date: createDateFilter('dd MMMM yyyy HH:mm', { locale }),
+    date: createDateFilter('dd MMMM yyyy HH:mm', { locale })
   },
   methods: {
     downloadReport() {
       this.$store.dispatch('office/downloadReport')
-    },
+    }
   },
   created() {
     this.$store.dispatch('office/fetchStatistics')
   },
   computed: {
-    ...mapGetters('office', ['statistics']),
+    ...mapGetters('office', ['statistics'])
   },
   data() {
     return {
@@ -66,10 +72,10 @@ export default {
         { text: 'Sarflagan vaqti (daqiqa)', value: 'time', divider: true },
         { text: "Qo'shimcha ma'lumot", value: 'comment', divider: true },
         { text: 'Hisobot sanasi', value: 'added_date', divider: true },
-        { text: 'Hisobot yuborilgan sana', value: 'created_at', divider: true },
-      ],
+        { text: 'Hisobot yuborilgan sana', value: 'created_at', divider: true }
+      ]
     }
-  },
+  }
 }
 </script>
 

@@ -29,8 +29,14 @@
     <!-- Navigation Items -->
     <v-list expand shaped class="vertical-nav-menu-items pr-5">
       <nav-menu-group title="Dashboard" :icon="icons.mdiHomeOutline">
-        <nav-menu-link title="Statistics" :to="{ name: 'dashboard-statistics' }" />
-        <nav-menu-link title="Analytics" :to="{ name: 'dashboard-analytics' }" />
+        <nav-menu-link
+          title="Statistics"
+          :to="{ name: 'dashboard-statistics' }"
+        />
+        <nav-menu-link
+          title="Analytics"
+          :to="{ name: 'dashboard-analytics' }"
+        />
       </nav-menu-group>
       <nav-menu-section-title title="USER INTERFACE"></nav-menu-section-title>
     </v-list>
@@ -46,7 +52,7 @@ import {
   mdiTable,
   mdiFileOutline,
   mdiFormSelect,
-  mdiAccountCogOutline,
+  mdiAccountCogOutline
 } from '@mdi/js'
 import NavMenuGroup from './components/NavMenuGroup.vue'
 import NavMenuLink from './components/NavMenuLink.vue'
@@ -56,13 +62,13 @@ export default {
   components: {
     NavMenuGroup,
     NavMenuLink,
-    NavMenuSectionTitle,
+    NavMenuSectionTitle
   },
   props: {
     isDrawerOpen: {
       type: Boolean,
-      default: null,
-    },
+      default: null
+    }
   },
   setup() {
     return {
@@ -74,10 +80,10 @@ export default {
         mdiTable,
         mdiFileOutline,
         mdiFormSelect,
-        mdiAccountCogOutline,
-      },
+        mdiAccountCogOutline
+      }
     }
-  },
+  }
 }
 </script>
 

@@ -1,6 +1,9 @@
 <template>
   <v-fade-transition mode="out-in">
-    <v-icon :key="$vuetify.theme.dark" @click="$vuetify.theme.dark = !$vuetify.theme.dark">
+    <v-icon
+      :key="$vuetify.theme.dark"
+      @click="$vuetify.theme.dark = !$vuetify.theme.dark"
+    >
       {{ $vuetify.theme.dark ? icons.mdiWeatherSunny : icons.mdiWeatherNight }}
     </v-icon>
   </v-fade-transition>
@@ -14,10 +17,10 @@ export default {
     return {
       icons: {
         mdiWeatherNight,
-        mdiWeatherSunny,
-      },
+        mdiWeatherSunny
+      }
     }
-  },
+  }
 }
 </script>
 

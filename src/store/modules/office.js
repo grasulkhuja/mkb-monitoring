@@ -7,7 +7,7 @@ export const state = {
   departments: [],
   departmentPositions: [],
   positionTasks: [],
-  statistics: [],
+  statistics: []
 }
 export const mutations = {
   SET_OFFICE_TYPE(state, officeType) {
@@ -24,7 +24,7 @@ export const mutations = {
   },
   SET_STATISTICS(state, statistics) {
     state.statistics = statistics
-  },
+  }
 }
 export const actions = {
   fetchDepartments: async ({ commit, state }) => {
@@ -48,11 +48,11 @@ export const actions = {
   },
   downloadReport: async () => {
     return await OfficeService.downloadReport()
-  },
+  }
 }
 export const getters = {
   departments: (state) => state.departments,
   departmentPositions: (state) => state.departmentPositions,
   positionTasks: (state) => state.positionTasks,
-  statistics: (state) => state.statistics,
+  statistics: (state) => state.statistics
 }

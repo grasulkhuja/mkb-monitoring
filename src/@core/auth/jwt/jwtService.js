@@ -40,30 +40,35 @@ export default class JwtService {
       (response) => response,
       (error) => {
         // const { config, response: { status } } = error
-        const { config, response } = error
-        const originalRequest = config
+        const { response } = error
+        // const originalRequest = config
 
         // if (status === 401) {
         if (response && response.status === 401) {
-          if (!this.isAlreadyFetchingAccessToken) {
-            this.isAlreadyFetchingAccessToken = true
-            this.refreshToken().then((r) => {
-              this.isAlreadyFetchingAccessToken = false
-
-              // Update accessToken in localStorage
-              this.setToken(r.data.token)
-
-              this.onAccessTokenFetched(r.data.token)
-            })
+          if (response.data.detail.status === 'Invalid token') {
+            localStorage.removeItem('access')
+            localStorage.removeItem('refresh')
+            router.push('/login').then(() => {})
           }
-          const retryOriginalRequest = new Promise((resolve) => {
-            this.addSubscriber((access) => {
-              originalRequest.headers.Authorization = `${this.jwtConfig.tokenType} ${access}`
-              resolve(this.axiosIns(originalRequest))
-            })
-          })
+          // if (!this.isAlreadyFetchingAccessToken) {
+          //   this.isAlreadyFetchingAccessToken = true
+          //   this.refreshToken().then((r) => {
+          //     this.isAlreadyFetchingAccessToken = false
 
-          return retryOriginalRequest
+          //     // Update accessToken in localStorage
+          //     this.setToken(r.data.token)
+
+          //     this.onAccessTokenFetched(r.data.token)
+          //   })
+          // }
+          // const retryOriginalRequest = new Promise((resolve) => {
+          //   this.addSubscriber((access) => {
+          //     originalRequest.headers.Authorization = `${this.jwtConfig.tokenType} ${access}`
+          //     resolve(this.axiosIns(originalRequest))
+          //   })
+          // })
+
+          // return retryOriginalRequest
         }
         if (response && response.status === 403) {
           localStorage.removeItem('access')
@@ -72,12 +77,14 @@ export default class JwtService {
         }
 
         return Promise.reject(error)
-      },
+      }
     )
   }
 
   onAccessTokenFetched(accessToken) {
-    this.subscribers = this.subscribers.filter((callback) => callback(accessToken))
+    this.subscribers = this.subscribers.filter((callback) =>
+      callback(accessToken)
+    )
   }
 
   addSubscriber(callback) {
@@ -110,7 +117,7 @@ export default class JwtService {
 
   refreshToken() {
     return this.axiosIns.post(this.jwtConfig.refreshEndpoint, {
-      refresh: this.getRefreshToken(),
+      refresh: this.getRefreshToken()
     })
   }
 }

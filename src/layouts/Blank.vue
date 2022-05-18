@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: 'LayoutBlank',
+  name: 'LayoutBlank'
 }
 </script>
 

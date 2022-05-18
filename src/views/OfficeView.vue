@@ -5,7 +5,9 @@
         <v-card flat color="grey lighten-4">
           <v-card-actions>
             <v-stepper v-model="step" vertical width="100%">
-              <v-stepper-step :complete="step > 1" step="1"> Departmentni tanlang </v-stepper-step>
+              <v-stepper-step :complete="step > 1" step="1">
+                Departmentni tanlang
+              </v-stepper-step>
 
               <v-stepper-content step="1">
                 <v-card flat>
@@ -21,14 +23,20 @@
                   </v-card-text>
                   <v-card-actions>
                     <v-spacer />
-                    <v-btn color="secondary" outlined @click.prevent="backToChooseOfficeType">
+                    <v-btn
+                      color="secondary"
+                      outlined
+                      @click.prevent="backToChooseOfficeType"
+                    >
                       Ofis turini tanlashga qaytish
                     </v-btn>
                   </v-card-actions>
                 </v-card>
               </v-stepper-content>
 
-              <v-stepper-step :complete="step > 2" step="2"> Lavozimni tanlang </v-stepper-step>
+              <v-stepper-step :complete="step > 2" step="2">
+                Lavozimni tanlang
+              </v-stepper-step>
 
               <v-stepper-content step="2">
                 <v-card flat>
@@ -44,7 +52,11 @@
                   </v-card-text>
                   <v-card-actions>
                     <v-spacer />
-                    <v-btn color="secondary" outlined @click.prevent="backToChooseDepartment">
+                    <v-btn
+                      color="secondary"
+                      outlined
+                      @click.prevent="backToChooseDepartment"
+                    >
                       Departament tanlashga qaytish
                     </v-btn>
                   </v-card-actions>
@@ -56,7 +68,11 @@
               </v-stepper-step>
 
               <v-stepper-content step="3">
-                <v-form @submit.prevent="sendApplication" v-model="valid" ref="form">
+                <v-form
+                  @submit.prevent="sendApplication"
+                  v-model="valid"
+                  ref="form"
+                >
                   <v-card flat>
                     <v-card-text>
                       <v-spacer />
@@ -90,7 +106,10 @@
                       </v-col>
                     </v-card-text>
                     <v-card-text>
-                      <v-row v-for="(task, index) in completedTasks" :key="task.id">
+                      <v-row
+                        v-for="(task, index) in completedTasks"
+                        :key="task.id"
+                      >
                         <v-col cols="12" md="6">
                           <v-autocomplete
                             v-model="task.task_id"
@@ -144,7 +163,10 @@
                             required
                           />
                         </v-col>
-                        <v-col cols="12" :md="completedTasks.length > 1 ? 2 : 3">
+                        <v-col
+                          cols="12"
+                          :md="completedTasks.length > 1 ? 2 : 3"
+                        >
                           <v-textarea
                             v-model="task.comment"
                             rows="1"
@@ -156,8 +178,17 @@
                             counter="50"
                           />
                         </v-col>
-                        <v-col v-if="completedTasks.length > 1" cols="12" md="1">
-                          <v-btn @click.prevent="removeTask(index)" icon color="error" class="ml-5">
+                        <v-col
+                          v-if="completedTasks.length > 1"
+                          cols="12"
+                          md="1"
+                        >
+                          <v-btn
+                            @click.prevent="removeTask(index)"
+                            icon
+                            color="error"
+                            class="ml-5"
+                          >
                             <v-icon>mdi-close</v-icon>
                           </v-btn>
                         </v-col>
@@ -179,8 +210,10 @@
                     <v-card-actions>
                       <v-spacer />
                       <p>
-                        <span>Umumiy sarflangan vaqt: </span>{{ totalSpentTime.days }} kun,
-                        {{ totalSpentTime.hours }} soat, {{ totalSpentTime.minutes }} daqiqa
+                        <span>Umumiy sarflangan vaqt: </span
+                        >{{ totalSpentTime.days }} kun,
+                        {{ totalSpentTime.hours }} soat,
+                        {{ totalSpentTime.minutes }} daqiqa
                       </p>
                     </v-card-actions>
                     <v-card-actions>
@@ -237,21 +270,21 @@ export default {
           quantity: null,
           hour: null,
           minute: null,
-          comment: null,
-        },
+          comment: null
+        }
       ],
       requiredRules: [(v) => !!v || "To'ldirilishi kerak"],
       hourRules: [
         (v) => !!v || "To'ldirilishi kerak",
-        (v) => (v >= 0 && v <= 23) || "Noto'g'ri kiritildi (0-23)",
+        (v) => (v >= 0 && v <= 23) || "Noto'g'ri kiritildi (0-23)"
       ],
       minuteRules: [
         (v) => !!v || "To'ldirilishi kerak",
-        (v) => (v >= 0 && v <= 59) || "Noto'g'ri kiritildi (0-59)",
+        (v) => (v >= 0 && v <= 59) || "Noto'g'ri kiritildi (0-59)"
       ],
       showSnackbar: null,
       message: null,
-      status: null,
+      status: null
     }
   },
   watch: {
@@ -259,7 +292,7 @@ export default {
       if (departmentId !== null) {
         this.$store
           .dispatch('office/fetchDepartmentPositions', {
-            departmentId,
+            departmentId
           })
           .then(() => {
             this.step = 2
@@ -270,16 +303,20 @@ export default {
       if (positionId !== null) {
         this.$store
           .dispatch('office/fetchPositionTasks', {
-            positionId,
+            positionId
           })
           .then(() => {
             this.step = 3
           })
       }
-    },
+    }
   },
   computed: {
-    ...mapGetters('office', ['departments', 'departmentPositions', 'positionTasks']),
+    ...mapGetters('office', [
+      'departments',
+      'departmentPositions',
+      'positionTasks'
+    ]),
     // selectableTasks(item) {
     //   return this.positionTasks.filter((task) => {
     //     return !this.completedTasks.some((completedTask) => completedTask.task_id === task.id)
@@ -295,18 +332,18 @@ export default {
       total -= hours * 60
       const minutes = total
       return { days, hours, minutes }
-    },
+    }
   },
   created() {
     this.$store.dispatch('office/fetchDepartments', {
-      officeType: this.$store.state.office.officeType,
+      officeType: this.$store.state.office.officeType
     })
   },
   methods: {
     sendApplication() {
       this.$store
         .dispatch('office/sendApplication', {
-          tasks: this.completedTasks,
+          tasks: this.completedTasks
         })
         .then((response) => {
           if (response.result === 'OK') {
@@ -331,7 +368,7 @@ export default {
         quantity: null,
         hour: null,
         minute: null,
-        comment: null,
+        comment: null
       })
     },
     backToChooseOfficeType() {
@@ -348,8 +385,8 @@ export default {
           quantity: null,
           hour: null,
           minute: null,
-          comment: null,
-        },
+          comment: null
+        }
       ]
       this.$refs.form.reset()
       this.position = null
@@ -357,10 +394,10 @@ export default {
     },
     removeTask(index) {
       this.completedTasks.splice(index, 1)
-    },
+    }
   },
   beforeDestroy() {
     clearTimeout()
-  },
+  }
 }
 </script>

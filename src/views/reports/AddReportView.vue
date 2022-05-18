@@ -4,11 +4,14 @@
       <v-col cols="12">
         <v-card v-if="user" class="mb-2">
           <v-card-title>
-            <span class="headline font-weight-black">Foydalanuvchi ma'lumotlari</span>
+            <span class="headline font-weight-black"
+              >Foydalanuvchi ma'lumotlari</span
+            >
           </v-card-title>
           <v-card-text>
             <p class="text-h6">
-              <span class="font-weight-bold">Ismi: </span>{{ user[0].full_name }}
+              <span class="font-weight-bold">Ismi: </span
+              >{{ user[0].full_name }}
             </p>
             <p class="text-h6">
               <span class="font-weight-bold">Ishlash joyi: </span>
@@ -20,7 +23,9 @@
         </v-card>
         <v-card>
           <v-card-title>
-            <span class="ml-4 pb-5">Lavozim majburiyatlari formasini to'ldiring</span>
+            <span class="ml-4 pb-5"
+              >Lavozim majburiyatlari formasini to'ldiring</span
+            >
           </v-card-title>
           <v-card-text>
             <v-row>
@@ -46,11 +51,20 @@
                       class="ml-4"
                     />
                   </template>
-                  <v-date-picker v-model="date" @input="dateMenu = false" :first-day-of-week="1" />
+                  <v-date-picker
+                    v-model="date"
+                    @input="dateMenu = false"
+                    :first-day-of-week="1"
+                  />
                 </v-menu>
               </v-col>
             </v-row>
-            <v-form @submit.prevent="sendApplication" v-model="valid" ref="form" v-if="user">
+            <v-form
+              @submit.prevent="sendApplication"
+              v-model="valid"
+              ref="form"
+              v-if="user"
+            >
               <v-card flat>
                 <v-card-text>
                   <v-row v-for="(task, index) in completedTasks" :key="task.id">
@@ -118,7 +132,12 @@
                       />
                     </v-col>
                     <v-col v-if="completedTasks.length > 1" cols="12" md="1">
-                      <v-btn @click.prevent="removeTask(index)" icon color="error" class="ml-5">
+                      <v-btn
+                        @click.prevent="removeTask(index)"
+                        icon
+                        color="error"
+                        class="ml-5"
+                      >
                         <v-icon>mdi-close</v-icon>
                       </v-btn>
                     </v-col>
@@ -140,8 +159,10 @@
                 <v-card-actions>
                   <v-spacer />
                   <p>
-                    <span>Umumiy sarflangan vaqt: </span>{{ totalSpentTime.days }} kun,
-                    {{ totalSpentTime.hours }} soat, {{ totalSpentTime.minutes }} daqiqa
+                    <span>Umumiy sarflangan vaqt: </span
+                    >{{ totalSpentTime.days }} kun,
+                    {{ totalSpentTime.hours }} soat,
+                    {{ totalSpentTime.minutes }} daqiqa
                   </p>
                 </v-card-actions>
                 <v-card-actions>
@@ -187,25 +208,29 @@ export default {
           quantity: null,
           hour: null,
           minute: null,
-          comment: '',
-        },
+          comment: ''
+        }
       ],
       requiredRules: [(v) => !!v || "To'ldirilishi kerak"],
       hourRules: [
         (v) => !!v || "To'ldirilishi kerak",
-        (v) => (v >= 0 && v <= 23) || "Noto'g'ri kiritildi (0-23)",
+        (v) => (v >= 0 && v <= 23) || "Noto'g'ri kiritildi (0-23)"
       ],
       minuteRules: [
         (v) => !!v || "To'ldirilishi kerak",
-        (v) => (v >= 0 && v <= 59) || "Noto'g'ri kiritildi (0-59)",
+        (v) => (v >= 0 && v <= 59) || "Noto'g'ri kiritildi (0-59)"
       ],
       showSnackbar: null,
       message: null,
-      status: null,
+      status: null
     }
   },
   computed: {
-    ...mapGetters('office', ['departments', 'departmentPositions', 'positionTasks']),
+    ...mapGetters('office', [
+      'departments',
+      'departmentPositions',
+      'positionTasks'
+    ]),
     ...mapGetters('auth', ['user']),
     totalSpentTime() {
       let total = this.completedTasks.reduce((acc, task) => {
@@ -217,14 +242,14 @@ export default {
       total -= hours * 60
       const minutes = total
       return { days, hours, minutes }
-    },
+    }
   },
   methods: {
     sendApplication() {
       this.$store
         .dispatch('office/sendApplication', {
           date: this.date,
-          tasks: this.completedTasks,
+          tasks: this.completedTasks
         })
         .then((response) => {
           if (response.result === 'OK') {
@@ -237,8 +262,8 @@ export default {
                 quantity: null,
                 hour: null,
                 minute: null,
-                comment: '',
-              },
+                comment: ''
+              }
             ]
             this.$refs.form.reset()
           }
@@ -255,16 +280,16 @@ export default {
         quantity: null,
         hour: null,
         minute: null,
-        comment: '',
+        comment: ''
       })
     },
     removeTask(index) {
       this.completedTasks.splice(index, 1)
-    },
+    }
   },
   created() {
     this.$store.dispatch('auth/fetchUserData')
-  },
+  }
 }
 </script>
 

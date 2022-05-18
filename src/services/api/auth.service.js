@@ -8,7 +8,7 @@ const AuthService = {
   getUserData: async () => {
     const { data } = await axios.get('/getalldata')
     return data
-  },
+  }
 }
 
 export default AuthService

@@ -18,10 +18,10 @@ export default {
     return {
       logout,
       icons: {
-        mdiLogoutVariant,
-      },
+        mdiLogoutVariant
+      }
     }
-  },
+  }
 }
 </script>
 

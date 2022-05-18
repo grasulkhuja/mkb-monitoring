@@ -11,10 +11,22 @@
           <v-card-title class="text-uppercase"> </v-card-title>
           <v-card-actions>
             <v-spacer />
-            <v-btn color="green darken-1" class="mr-6" outlined large @click="chooseFrontOffice">
+            <v-btn
+              color="green darken-1"
+              class="mr-6"
+              outlined
+              large
+              @click="chooseFrontOffice"
+            >
               Front Ofis
             </v-btn>
-            <v-btn color="green darken-1" class="ml-6" outlined large @click="chooseBackOffice">
+            <v-btn
+              color="green darken-1"
+              class="ml-6"
+              outlined
+              large
+              @click="chooseBackOffice"
+            >
               Back Ofis
             </v-btn>
             <v-spacer />
@@ -30,7 +42,7 @@ export default {
   name: 'HomeView',
   data() {
     return {
-      isChoosingOffice: true,
+      isChoosingOffice: true
     }
   },
   methods: {
@@ -41,7 +53,7 @@ export default {
     chooseBackOffice() {
       this.$store.commit('office/SET_OFFICE_TYPE', 'back')
       this.$router.push({ name: 'office' })
-    },
-  },
+    }
+  }
 }
 </script>

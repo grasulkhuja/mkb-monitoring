@@ -16,7 +16,6 @@ Vue.component('apexchart', VueApexCharts)
 
 import '@/libs/axios'
 import '@/auth/jwt/useJwt'
-import i18n from './i18n'
 Vue.config.productionTip = false
 
 // const access = localStorage.getItem('access')
@@ -26,6 +25,5 @@ new Vue({
   router,
   store,
   vuetify,
-  i18n,
   render: (h) => h(App)
 }).$mount('#app')
