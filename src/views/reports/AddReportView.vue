@@ -4,28 +4,41 @@
       <v-col cols="12">
         <v-card v-if="user" class="mb-2">
           <v-card-title>
-            <span class="headline font-weight-black"
-              >Foydalanuvchi ma'lumotlari</span
-            >
+            <span class="headline font-weight-black">
+              Foydalanuvchi ma'lumotlari
+            </span>
           </v-card-title>
           <v-card-text>
-            <p class="text-h6">
-              <span class="font-weight-bold">Ismi: </span
-              >{{ user[0].full_name }}
-            </p>
-            <p class="text-h6">
-              <span class="font-weight-bold">Ishlash joyi: </span>
-              <span>{{ user[0].branch_name }}. </span>
-              <span>{{ user[0].structure_name }} - </span>
-              <span>{{ user[0].position_name }}</span>
-            </p>
+            <v-row>
+              <v-col cols="12" sm="6">
+                <p class="text-h6">
+                  <span class="font-weight-bold">Ismi: </span>
+                  {{ user[0].full_name }}
+                </p>
+
+                <p class="text-h6">
+                  <span class="font-weight-bold">Ishlash joyi: </span>
+                  <span>{{ user[0].structure_name }} </span>
+                </p>
+              </v-col>
+              <v-col cols="12" sm="6">
+                <p class="text-h6">
+                  <span class="font-weight-bold">Filial nomi: </span>
+                  {{ user[0].branch_name }}
+                </p>
+                <p class="text-h6">
+                  <span class="font-weight-bold">Lavozimi: </span>
+                  <span>{{ user[0].position_name }}</span>
+                </p>
+              </v-col>
+            </v-row>
           </v-card-text>
         </v-card>
         <v-card>
           <v-card-title>
-            <span class="ml-4 pb-5"
-              >Lavozim majburiyatlari formasini to'ldiring</span
-            >
+            <span class="ml-4 pb-5">
+              Lavozim majburiyatlari formasini to'ldiring
+            </span>
           </v-card-title>
           <v-card-text>
             <v-row>
@@ -69,24 +82,35 @@
                 <v-card-text>
                   <v-row v-for="(task, index) in completedTasks" :key="task.id">
                     <v-col cols="12" md="6">
-                      <v-autocomplete
-                        v-model="task.task_id"
-                        :items="user[1]"
-                        :rules="requiredRules"
-                        item-value="id"
-                        item-text="task_name"
-                        outlined
-                        dense
-                        placeholder="Majburiyat nomi"
-                        hint="Majburiyat nomini tanlang"
-                        required
-                      >
-                      </v-autocomplete>
+                      <div class="d-flex">
+                        <span
+                          class="mt-3 mr-2 font-weight-semibold text-body-1"
+                        >
+                          {{ index + 1 }}.
+                        </span>
+                        <v-autocomplete
+                          v-model="task.task_id"
+                          :items="user[1]"
+                          :rules="requiredRules"
+                          item-value="id"
+                          item-text="task_name"
+                          outlined
+                          dense
+                          placeholder="Majburiyat nomi"
+                          hint="Majburiyat nomini tanlang"
+                          required
+                          :success="task.task_id"
+                          class="required"
+                        >
+                        </v-autocomplete>
+                      </div>
                     </v-col>
                     <v-col cols="12" md="1">
                       <v-text-field
                         v-model="task.quantity"
+                        oninput="this.value = this.value.replace(/[^1-9.]/g, '')"
                         :rules="requiredRules"
+                        :success="task.quantity > 0"
                         type="number"
                         outlined
                         dense
@@ -97,25 +121,28 @@
                     </v-col>
                     <v-col cols="12" md="1">
                       <v-text-field
+                        oninput="this.value = this.value.replace(/[^\d.]/g, '')"
                         type="number"
                         v-model="task.hour"
                         :rules="hourRules"
+                        :success="task.hour !== null"
                         outlined
                         dense
                         placeholder="Soat"
-                        hint=""
                         required
                       />
                     </v-col>
                     <v-col cols="12" md="1">
                       <v-text-field
                         type="number"
-                        v-model="task.minute"
+                        min="1"
+                        oninput="this.value = this.value.replace(/[^\d.]/g, '')"
+                        v-model.number="task.minute"
                         :rules="minuteRules"
+                        :success="task.minute !== null"
                         outlined
                         dense
                         placeholder="Daqiqa"
-                        hint=""
                         required
                       />
                     </v-col>
@@ -156,9 +183,17 @@
                     </v-col>
                   </v-row>
                 </v-card-text>
+                <v-card-text>
+                  <v-alert v-model="isSameTasksChoose" color="error" dark>
+                    <span v-for="sameTask in choosenSameTasks" :key="sameTask">
+                      {{ sameTask }} -
+                    </span>
+                    <span> lar bir xil bo'lib qoldi</span>
+                  </v-alert>
+                </v-card-text>
                 <v-card-actions>
                   <v-spacer />
-                  <p>
+                  <p class="font-weight-semibold text-body-1">
                     <span>Umumiy sarflangan vaqt: </span
                     >{{ totalSpentTime.days }} kun,
                     {{ totalSpentTime.hours }} soat,
@@ -183,6 +218,7 @@
         </v-card>
       </v-col>
     </v-row>
+
     <v-snackbar v-model="showSnackbar" :color="status">
       {{ message }}
     </v-snackbar>
@@ -222,7 +258,9 @@ export default {
       ],
       showSnackbar: null,
       message: null,
-      status: null
+      status: null,
+      isSameTasksChoose: false,
+      choosenSameTasks: []
     }
   },
   computed: {
@@ -289,6 +327,36 @@ export default {
   },
   created() {
     this.$store.dispatch('auth/fetchUserData')
+  },
+  watch: {
+    completedTasks: {
+      handler() {
+        if (this.completedTasks.length > 1) {
+          this.choosenSameTasks = []
+          this.isSameTasksChoose = false
+          for (let i = 0; i < this.completedTasks.length; i++) {
+            for (let j = i + 1; j < this.completedTasks.length; j++) {
+              if (
+                this.completedTasks[i].task_id ===
+                  this.completedTasks[j].task_id &&
+                this.completedTasks[i].task_id !== null
+              ) {
+                this.isSameTasksChoose = true
+                this.valid = false
+                this.choosenSameTasks.push(i + 1, j + 1)
+                this.choosenSameTasks = [...new Set(this.choosenSameTasks)]
+              }
+            }
+          }
+        }
+        this.completedTasks.forEach((task) => {
+          if (Number(task.hour) === 0) {
+            if (Number(task.minute) === 0) task.minute = '1'
+          }
+        })
+      },
+      deep: true
+    }
   }
 }
 </script>

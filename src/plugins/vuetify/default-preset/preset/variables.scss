@@ -7,6 +7,7 @@ $shades: (
 );
 
 $primary-shade--light: #080809;
+$primary-shade--light--custom: #772907;
 $primary-shade--dark: #e7e3fc;
 $shadow-color--light: $primary-shade--light;
 $shadow-color--dark: #131120;
@@ -98,7 +99,7 @@ $material-light: map-deep-merge(
                         'text-fields': (
                                 'filled': rgba($primary-shade--light, 0.06),
                                 'filled-hover': rgba($primary-shade--light, 0.12),
-                                'outlined': rgba($primary-shade--light, 0.99),
+                                'outlined': rgba($primary-shade--light--custom, 0.99),
                                 'outlined-disabled': rgba($primary-shade--light, 0.4),
                                 'outlined-hover': rgba($primary-shade--light, 0.86)
                         ),
@@ -147,7 +148,7 @@ $material-light: map-deep-merge(
                         'text-fields': (
                                 'filled': rgba($primary-shade--light, 0.03),
                                 'filled-hover': rgba($primary-shade--light, 0.08),
-                                'outlined': rgba($primary-shade--light, 0.22),
+                                'outlined': rgba($primary-shade--light--custom, 0.99),
                                 'outlined-hover': rgba($primary-shade--light, 0.28),
                                 'outlined-disabled': rgba($primary-shade--light, 0.22)
                         ),
