@@ -132,7 +132,10 @@
                         dense
                         placeholder="Soat"
                         required
-                        :error="Number(task.hour) + Number(task.minute) === 0"
+                        :error="
+                          task.hour !== null &&
+                          Number(task.hour) + Number(task.minute) === 0
+                        "
                       />
                     </v-col>
                     <v-col cols="12" md="1">
@@ -150,7 +153,10 @@
                         dense
                         placeholder="Daqiqa"
                         required
-                        :error="Number(task.hour) + Number(task.minute) === 0"
+                        :error="
+                          task.minute !== null &&
+                          Number(task.hour) + Number(task.minute) === 0
+                        "
                       />
                     </v-col>
                     <v-col cols="12" :md="completedTasks.length > 1 ? 2 : 3">
