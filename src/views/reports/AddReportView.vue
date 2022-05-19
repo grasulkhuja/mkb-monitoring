@@ -190,6 +190,10 @@
                     </span>
                     <span> lar bir xil bo'lib qoldi</span>
                   </v-alert>
+                  <v-alert v-model="isShowSpentTimeForTask" color="error" dark>
+                    Majburiyat uchun sarflangan umumiy vaqt 0 ga teng bo'lishi
+                    mumkin emas
+                  </v-alert>
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer />
@@ -260,7 +264,9 @@ export default {
       message: null,
       status: null,
       isSameTasksChoose: false,
-      choosenSameTasks: []
+      choosenSameTasks: [],
+      spentTimeForTask: 0,
+      isShowSpentTimeForTask: false
     }
   },
   computed: {
@@ -350,8 +356,15 @@ export default {
           }
         }
         this.completedTasks.forEach((task) => {
-          if (task.hour === '0') {
-            if (task.minute === '0') task.minute = '1'
+          if (Number(task.hour) === 0) {
+            if (
+              Number(task.hour) + Number(task.minute) === 0 &&
+              task.hour !== null &&
+              task.minute !== null
+            ) {
+              this.valid = false
+              this.isShowSpentTimeForTask = true
+            }
           }
         })
       },
