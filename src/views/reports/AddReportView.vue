@@ -99,7 +99,7 @@
                           placeholder="Majburiyat nomi"
                           hint="Majburiyat nomini tanlang"
                           required
-                          :success="task.task_id"
+                          :success="task.task_id > 0"
                           class="required"
                         >
                         </v-autocomplete>
@@ -125,25 +125,32 @@
                         type="number"
                         v-model="task.hour"
                         :rules="hourRules"
-                        :success="task.hour !== null"
+                        :success="
+                          task.hour !== null && task.minute > 0 && task.hour > 0
+                        "
                         outlined
                         dense
                         placeholder="Soat"
                         required
+                        :error="Number(task.hour) + Number(task.minute) === 0"
                       />
                     </v-col>
                     <v-col cols="12" md="1">
                       <v-text-field
                         type="number"
-                        min="1"
                         oninput="this.value = this.value.replace(/[^\d.]/g, '')"
                         v-model="task.minute"
                         :rules="minuteRules"
-                        :success="task.minute !== null"
+                        :success="
+                          task.minute !== null &&
+                          task.minute > 0 &&
+                          task.hour > 0
+                        "
                         outlined
                         dense
                         placeholder="Daqiqa"
                         required
+                        :error="Number(task.hour) + Number(task.minute) === 0"
                       />
                     </v-col>
                     <v-col cols="12" :md="completedTasks.length > 1 ? 2 : 3">
@@ -355,23 +362,9 @@ export default {
             }
           }
         }
-        this.completedTasks.forEach((task) => {
-          if (Number(task.hour) === 0) {
-            if (
-              Number(task.hour) + Number(task.minute) === 0 &&
-              task.hour !== null &&
-              task.minute !== null
-            ) {
-              this.valid = false
-              this.isShowSpentTimeForTask = true
-            }
-          }
-        })
       },
       deep: true
     }
   }
 }
 </script>
-
-<style scoped></style>
