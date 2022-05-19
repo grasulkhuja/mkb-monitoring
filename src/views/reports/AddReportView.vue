@@ -137,7 +137,7 @@
                         type="number"
                         min="1"
                         oninput="this.value = this.value.replace(/[^\d.]/g, '')"
-                        v-model.number="task.minute"
+                        v-model="task.minute"
                         :rules="minuteRules"
                         :success="task.minute !== null"
                         outlined
@@ -350,8 +350,8 @@ export default {
           }
         }
         this.completedTasks.forEach((task) => {
-          if (Number(task.hour) === 0) {
-            if (Number(task.minute) === 0) task.minute = '1'
+          if (task.hour === '0') {
+            if (task.minute === '0') task.minute = '1'
           }
         })
       },
