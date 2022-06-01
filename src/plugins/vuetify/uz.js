@@ -1,12 +1,12 @@
 export default {
   badge: 'знак',
-  close: 'Yopish',
+  close: 'Ёпиш',
   dataIterator: {
     noResultsText: 'Не найдено подходящих записей',
-    loadingText: "Ma'lumotlar yuklanmoqda"
+    loadingText: 'Маълумотлар юкланмоқда'
   },
   dataTable: {
-    itemsPerPageText: 'Qatorlar soni:',
+    itemsPerPageText: 'Қаторлар сони:',
     ariaLabel: {
       sortDescending: 'Упорядочено по убыванию.',
       sortAscending: 'Упорядочено по возрастанию.',
@@ -18,8 +18,8 @@ export default {
     sortBy: 'Сортировать по'
   },
   dataFooter: {
-    itemsPerPageText: 'Qatorlar soni:',
-    itemsPerPageAll: 'Hammasi',
+    itemsPerPageText: 'Қаторлар сони:',
+    itemsPerPageAll: 'Ҳаммаси',
     nextPage: 'Следующая страница',
     prevPage: 'Предыдущая страница',
     firstPage: 'Первая страница',
@@ -33,7 +33,7 @@ export default {
     prevMonthAriaLabel: 'Прошлый месяц',
     prevYearAriaLabel: 'Предыдущий год'
   },
-  noDataText: "Ma'lumotlar topilmadi",
+  noDataText: 'Маълумотлар топилмади',
   carousel: {
     prev: 'Предыдущий слайд',
     next: 'Следующий слайд',
@@ -55,9 +55,9 @@ export default {
   pagination: {
     ariaLabel: {
       wrapper: 'Навигация по страницам',
-      next: 'Keyingi sahifa',
-      previous: 'Oldingi sahifa',
-      page: "{0} sahifaga o'tish",
+      next: 'Кейинги саҳифа',
+      previous: 'Олдинги саҳифа',
+      page: '{0} саҳифага ўтиш',
       currentPage: 'Текущая страница, Страница {0}'
     }
   },

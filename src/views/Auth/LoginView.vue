@@ -19,7 +19,7 @@
           <p
             class="text-2xl font-weight-semibold text--primary mb-2 text-center"
           >
-            Xush kelibsiz!
+            Xуш келибсиз!
           </p>
           <!--          <p class="mb-2">Please sign-in to your account and start the adventure</p>-->
         </v-card-text>
@@ -30,7 +30,7 @@
             <v-text-field
               v-model="username"
               outlined
-              placeholder="Login"
+              placeholder="Логин"
               hide-details
               class="mb-3"
             />
@@ -39,7 +39,7 @@
               v-model="password"
               outlined
               :type="isPasswordVisible ? 'text' : 'password'"
-              placeholder="Parol"
+              placeholder="Пароль"
               :append-icon="
                 isPasswordVisible ? icons.mdiEyeOffOutline : icons.mdiEyeOutline
               "
@@ -51,7 +51,7 @@
               {{ errorMessage }}
             </v-alert>
             <v-btn block type="submit" color="primary" class="mt-6">
-              Kirish
+              Кириш
             </v-btn>
           </v-form>
         </v-card-text>
