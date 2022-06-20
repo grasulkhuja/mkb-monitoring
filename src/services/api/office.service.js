@@ -22,18 +22,18 @@ const OfficeService = {
     return data
   },
   sendApplication: async (date, application) => {
-    const { data } = await axios.post('/reports', {
+    const { data } = await axios.post('/user-data/reports', {
       date,
       application
     })
     return data
   },
   getStatistics: async () => {
-    const { data } = await axios.get('/statistics')
+    const { data } = await axios.get('/admin-data/statistics')
     return data
   },
   downloadReport: async () => {
-    const { data } = await axios.get('/getxlsx', {
+    const { data } = await axios.get('/admin-data/getxlsx', {
       responseType: 'blob'
     })
     const url = window.URL.createObjectURL(new Blob([data]))

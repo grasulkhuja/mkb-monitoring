@@ -104,7 +104,7 @@
                           v-model="task.task_id"
                           :items="user.tasks"
                           :rules="requiredRules"
-                          item-value="id"
+                          item-value="task_id"
                           item-text="task_name"
                           outlined
                           dense
@@ -247,7 +247,6 @@
         </v-card>
       </v-col>
     </v-row>
-
     <v-snackbar v-model="showSnackbar" :color="status">
       {{ message }}
     </v-snackbar>
@@ -362,6 +361,7 @@ export default {
   watch: {
     completedTasks: {
       handler() {
+        this.valid = true
         if (this.completedTasks.length > 1) {
           this.choosenSameTasks = []
           this.isSameTasksChoose = false
