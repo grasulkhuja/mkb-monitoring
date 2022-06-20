@@ -6,7 +6,7 @@ const AuthService = {
     return data
   },
   getUserData: async () => {
-    const { data } = await axios.get('/getalldata')
+    const { data } = await axios.get('/user-data/getall')
     return data
   }
 }

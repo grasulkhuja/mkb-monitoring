@@ -8,7 +8,7 @@
             <v-text-field
               v-model="search"
               append-icon="mdi-magnify"
-              label="Izlash"
+              label="Излаш"
               single-line
               hide-details
               outlined
@@ -29,7 +29,7 @@
           <v-card-actions>
             <v-spacer />
             <v-btn @click.prevent="downloadReport" color="primary">
-              Yuklab olish
+              Юклаб олиш
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -63,16 +63,16 @@ export default {
       search: null,
       reportsTableHeaders: [
         { text: '#', value: 'id', divider: true },
-        { text: 'Hodim', value: 'full_name', divider: true },
-        { text: 'Struktura', value: 'structure_name', divider: true },
+        { text: 'Ҳодим', value: 'full_name', divider: true },
+        { text: 'Структура', value: 'structure_name', divider: true },
         // { text: 'Departament', value: 'department_name', divider: true },
-        { text: 'Lavozim', value: 'position_name', divider: true },
-        { text: 'Faoliyat turi', value: 'task_name', divider: true },
-        { text: 'Soni', value: 'quantity', divider: true },
-        { text: 'Sarflagan vaqti (daqiqa)', value: 'time', divider: true },
-        { text: "Qo'shimcha ma'lumot", value: 'comment', divider: true },
-        { text: 'Hisobot sanasi', value: 'added_date', divider: true },
-        { text: 'Hisobot yuborilgan sana', value: 'created_at', divider: true }
+        { text: 'Лавозим', value: 'position_name', divider: true },
+        { text: 'Фаолият тури', value: 'task_name', divider: true },
+        { text: 'Сони', value: 'quantity', divider: true },
+        { text: 'Сарфланган вақти (дақиқа)', value: 'time', divider: true },
+        { text: 'Қўшимча маълумот', value: 'comment', divider: true },
+        { text: 'Ҳисобот санаси', value: 'added_date', divider: true },
+        { text: 'Ҳисобот юборилган сана', value: 'created_at', divider: true }
       ]
     }
   }

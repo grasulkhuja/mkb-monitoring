@@ -5,30 +5,42 @@
         <v-card v-if="user" class="mb-2">
           <v-card-title>
             <span class="headline font-weight-black">
-              Foydalanuvchi ma'lumotlari
+              Фойдаланувчи маълумотлари
             </span>
           </v-card-title>
           <v-card-text>
             <v-row>
               <v-col cols="12" sm="6">
                 <p class="text-h6">
-                  <span class="font-weight-bold">Ismi: </span>
-                  {{ user[0].full_name }}
+                  <span class="font-weight-bold">Исми: </span>
+                  {{ user.employee_name }}
                 </p>
 
                 <p class="text-h6">
-                  <span class="font-weight-bold">Ishlash joyi: </span>
-                  <span>{{ user[0].structure_name }} </span>
+                  <span class="font-weight-bold">Ишлаш жойи: </span>
+                  <span v-if="user.governance_name"
+                    >{{ user.governance_name }}
+                  </span>
+                  <span v-if="user.block_name">{{ user.block_name }} </span>
+                  <span v-if="user.department_name"
+                    >{{ user.department_name }}
+                  </span>
+                  <span v-if="user.management_name"
+                    >{{ user.management_name }}
+                  </span>
+                  <span v-if="user.division_name"
+                    >{{ user.division_name }}
+                  </span>
                 </p>
               </v-col>
               <v-col cols="12" sm="6">
                 <p class="text-h6">
-                  <span class="font-weight-bold">Filial nomi: </span>
-                  {{ user[0].branch_name }}
+                  <span class="font-weight-bold">Филиал номи: </span>
+                  {{ user.branch_name }}
                 </p>
                 <p class="text-h6">
-                  <span class="font-weight-bold">Lavozimi: </span>
-                  <span>{{ user[0].position_name }}</span>
+                  <span class="font-weight-bold">Лавозими: </span>
+                  <span>{{ user.position_name }}</span>
                 </p>
               </v-col>
             </v-row>
@@ -37,7 +49,7 @@
         <v-card>
           <v-card-title>
             <span class="ml-4 pb-5">
-              Lavozim majburiyatlari formasini to'ldiring
+              Лавозим мажбуриятлари формасини тўлдиринг
             </span>
           </v-card-title>
           <v-card-text>
@@ -54,7 +66,7 @@
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
                       v-model="date"
-                      label="Sanani tanlang"
+                      label="Санани танланг"
                       prepend-icon="mdi-calendar"
                       readonly
                       outlined
@@ -90,14 +102,14 @@
                         </span>
                         <v-autocomplete
                           v-model="task.task_id"
-                          :items="user[1]"
+                          :items="user.tasks"
                           :rules="requiredRules"
-                          item-value="id"
+                          item-value="task_id"
                           item-text="task_name"
                           outlined
                           dense
-                          placeholder="Majburiyat nomi"
-                          hint="Majburiyat nomini tanlang"
+                          placeholder="Мажбурият номи"
+                          hint="Мажбурият номини танланг"
                           required
                           :success="task.task_id > 0"
                           class="required"
@@ -114,8 +126,8 @@
                         type="number"
                         outlined
                         dense
-                        placeholder="Soni"
-                        hint="Sonini kiriting"
+                        placeholder="Сони"
+                        hint="Сонини киритинг"
                         required
                       />
                     </v-col>
@@ -130,7 +142,7 @@
                         "
                         outlined
                         dense
-                        placeholder="Soat"
+                        placeholder="Соат"
                         required
                         :error="
                           task.hour !== null &&
@@ -151,7 +163,7 @@
                         "
                         outlined
                         dense
-                        placeholder="Daqiqa"
+                        placeholder="Дақиқа"
                         required
                         :error="
                           task.minute !== null &&
@@ -165,8 +177,8 @@
                         rows="1"
                         outlined
                         dense
-                        placeholder="Qo'shimcha ma'lumot"
-                        hint="Qo'shimcha ma'lumot"
+                        placeholder="Қўшимча маълумот"
+                        hint="Қўшимча маълумот"
                         auto-grow
                         counter="100"
                       />
@@ -186,12 +198,12 @@
                   <v-row>
                     <v-col cols="12" md="6">
                       <v-btn
-                        v-if="user[1].length > completedTasks.length"
+                        v-if="user.tasks.length > completedTasks.length"
                         color="primary"
                         outlined
                         @click.prevent="addTask"
                       >
-                        Qo'shish
+                        Қўшиш
                       </v-btn>
                     </v-col>
                   </v-row>
@@ -201,20 +213,20 @@
                     <span v-for="sameTask in choosenSameTasks" :key="sameTask">
                       {{ sameTask }} -
                     </span>
-                    <span> lar bir xil bo'lib qoldi</span>
+                    <span> лар бир хил бўлиб қолди</span>
                   </v-alert>
                   <v-alert v-model="isShowSpentTimeForTask" color="error" dark>
-                    Majburiyat uchun sarflangan umumiy vaqt 0 ga teng bo'lishi
-                    mumkin emas
+                    Мажбурият учун сарфланган умумий вақт 0 га тенг бўлиши
+                    мумкин эмас
                   </v-alert>
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer />
                   <p class="font-weight-semibold text-body-1">
-                    <span>Umumiy sarflangan vaqt: </span
-                    >{{ totalSpentTime.days }} kun,
-                    {{ totalSpentTime.hours }} soat,
-                    {{ totalSpentTime.minutes }} daqiqa
+                    <span>Умумий сарфланган вақт: </span
+                    >{{ totalSpentTime.days }} кун,
+                    {{ totalSpentTime.hours }} соат,
+                    {{ totalSpentTime.minutes }} дақиқа
                   </p>
                 </v-card-actions>
                 <v-card-actions>
@@ -226,7 +238,7 @@
                     @click.prevent="sendApplication"
                     :disabled="!valid"
                   >
-                    Arizani jo'natish
+                    Аризани жўнатиш
                   </v-btn>
                 </v-card-actions>
               </v-card>
@@ -235,7 +247,6 @@
         </v-card>
       </v-col>
     </v-row>
-
     <v-snackbar v-model="showSnackbar" :color="status">
       {{ message }}
     </v-snackbar>
@@ -264,14 +275,14 @@ export default {
           comment: ''
         }
       ],
-      requiredRules: [(v) => !!v || "To'ldirilishi kerak"],
+      requiredRules: [(v) => !!v || 'Тўлдирилиши керак'],
       hourRules: [
-        (v) => !!v || "To'ldirilishi kerak",
-        (v) => (v >= 0 && v <= 23) || "Noto'g'ri kiritildi (0-23)"
+        (v) => !!v || 'Тўлдирилиши керак',
+        (v) => (v >= 0 && v <= 23) || 'Нотўғри киритилди (0-23)'
       ],
       minuteRules: [
-        (v) => !!v || "To'ldirilishi kerak",
-        (v) => (v >= 0 && v <= 59) || "Noto'g'ri kiritildi (0-59)"
+        (v) => !!v || 'Тўлдирилиши керак',
+        (v) => (v >= 0 && v <= 59) || 'Нотўғри киритилди (0-59)'
       ],
       showSnackbar: null,
       message: null,
@@ -312,7 +323,7 @@ export default {
           if (response.result === 'OK') {
             this.showSnackbar = true
             this.status = 'success'
-            this.message = "Ariza muvaffaqiyatli jo'natildi"
+            this.message = 'Ариза мувофаққиятли жўнатилди'
             this.completedTasks = [
               {
                 task_id: null,
@@ -328,7 +339,7 @@ export default {
         .catch(() => {
           this.showSnackbar = true
           this.status = 'error'
-          this.message = "Ariza jo'natishda xatolik yuz berdi"
+          this.message = 'Аризани жўнатишда хатолик юз берди'
         })
     },
     addTask() {
@@ -350,6 +361,7 @@ export default {
   watch: {
     completedTasks: {
       handler() {
+        this.valid = true
         if (this.completedTasks.length > 1) {
           this.choosenSameTasks = []
           this.isSameTasksChoose = false
