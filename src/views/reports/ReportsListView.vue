@@ -63,10 +63,10 @@ export default {
       search: null,
       reportsTableHeaders: [
         { text: '#', value: 'id', divider: true },
-        { text: 'Ҳодим', value: 'full_name', divider: true },
-        { text: 'Структура', value: 'structure_name', divider: true },
+        { text: 'Ҳодим', value: 'user_name', divider: true },
+        { text: 'Структура', value: 'structure', divider: true },
         // { text: 'Departament', value: 'department_name', divider: true },
-        { text: 'Лавозим', value: 'position_name', divider: true },
+        { text: 'Лавозим', value: 'position', divider: true },
         { text: 'Фаолият тури', value: 'task_name', divider: true },
         { text: 'Сони', value: 'quantity', divider: true },
         { text: 'Сарфланган вақти (дақиқа)', value: 'time', divider: true },
