@@ -19,17 +19,17 @@
                 <p class="text-h6">
                   <span class="font-weight-bold">Ишлаш жойи: </span>
                   <span v-if="user.governance_name"
-                    >{{ user.governance_name }}
+                    >{{ user.governance_name }}.
                   </span>
-                  <span v-if="user.block_name">{{ user.block_name }} </span>
+                  <span v-if="user.block_name">{{ user.block_name }}. </span>
                   <span v-if="user.department_name"
-                    >{{ user.department_name }}
+                    >{{ user.department_name }}.
                   </span>
                   <span v-if="user.management_name"
-                    >{{ user.management_name }}
+                    >{{ user.management_name }}.
                   </span>
                   <span v-if="user.division_name"
-                    >{{ user.division_name }}
+                    >{{ user.division_name }}.
                   </span>
                 </p>
               </v-col>

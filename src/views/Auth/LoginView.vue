@@ -107,7 +107,7 @@ export default {
         })
         .then((response) => {
           useJwt.setToken(response.data.token)
-          if (response.data.user_type === 1)
+          if (response.data.user_type === 2)
             this.$router.push({ name: 'reports-list' })
           else this.$router.push({ name: 'reports-add' })
         })
