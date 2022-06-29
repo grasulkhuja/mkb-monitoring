@@ -18,18 +18,18 @@
 
                 <p class="text-h6">
                   <span class="font-weight-bold">Ишлаш жойи: </span>
-                  <span v-if="user.governance_name"
-                    >{{ user.governance_name }}.
+                  <span v-if="user.governance_name">
+                    {{ user.governance_name }}.
                   </span>
                   <span v-if="user.block_name">{{ user.block_name }}. </span>
-                  <span v-if="user.department_name"
-                    >{{ user.department_name }}.
+                  <span v-if="user.department_name">
+                    {{ user.department_name }}.
                   </span>
-                  <span v-if="user.management_name"
-                    >{{ user.management_name }}.
+                  <span v-if="user.management_name">
+                    {{ user.management_name }}.
                   </span>
-                  <span v-if="user.division_name"
-                    >{{ user.division_name }}.
+                  <span v-if="user.division_name">
+                    {{ user.division_name }}.
                   </span>
                 </p>
               </v-col>
@@ -120,8 +120,11 @@
                     <v-col cols="12" md="1">
                       <v-text-field
                         v-model="task.quantity"
-                        oninput="this.value = this.value.replace(/[^1-9.]/g, '')"
-                        :rules="requiredRules"
+                        :rules="[
+                          (v) => !!v || 'Сонини мажбурий!',
+                          (v) => (v && v >= 1) || '0 дан фарқли'
+                        ]"
+                        @keypress="isNumberChar($event)"
                         :success="task.quantity > 0"
                         type="number"
                         outlined
@@ -236,7 +239,7 @@
                     color="primary"
                     type="submit"
                     @click.prevent="sendApplication"
-                    :disabled="!valid"
+                    :disabled="isSubmitButtonDisabled"
                   >
                     Аризани жўнатиш
                   </v-btn>
@@ -310,6 +313,20 @@ export default {
       total -= hours * 60
       const minutes = total
       return { days, hours, minutes }
+    },
+
+    isSubmitButtonDisabled() {
+      let isDisabled = false
+      this.completedTasks.forEach((task) => {
+        if (task.task_id === null || task.task_id === '') isDisabled = true
+        if (task.quantity === null || task.quantity === '') isDisabled = true
+        if (task.hour === null || task.hour === '') isDisabled = true
+        if (task.minute === null || task.minute === '') isDisabled = true
+
+        return false
+      })
+
+      return isDisabled
     }
   },
   methods: {
@@ -324,15 +341,7 @@ export default {
             this.showSnackbar = true
             this.status = 'success'
             this.message = 'Ариза мувофаққиятли жўнатилди'
-            this.completedTasks = [
-              {
-                task_id: null,
-                quantity: null,
-                hour: null,
-                minute: null,
-                comment: ''
-              }
-            ]
+            this.completedTasks.length = 1
             this.$refs.form.reset()
           }
         })
@@ -353,6 +362,12 @@ export default {
     },
     removeTask(index) {
       this.completedTasks.splice(index, 1)
+    },
+    // eslint-disable-next-line consistent-return
+    isNumberChar(e) {
+      const char = String.fromCharCode(e.keyCode) // Get the character
+      if (/^[0-9]*$/.test(char)) return true // Match with regex
+      e.preventDefault() // If not match, don't add to input text
     }
   },
   created() {
